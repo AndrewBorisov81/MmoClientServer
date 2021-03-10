@@ -18,7 +18,7 @@
 #include <boost/asio/detail/config.hpp>
 
 #if defined(BOOST_ASIO_HAS_BOOST_THROW_EXCEPTION)
-# include <boost/throw_exception.hpp>
+#include <boost/throw_exception.hpp>
 #endif // defined(BOOST_ASIO_BOOST_THROW_EXCEPTION)
 
 namespace boost {
