@@ -1,12 +1,24 @@
-//
-//  net_client.h
-//  MmoClientServer
-//
-//  Created by Andrew Borisov on 20.03.2021.
-//
+#pragma once
 
-#ifndef net_client_h
-#define net_client_h
+#include "net_common.h"
+#include "net_message.h"
+#include "net_tsqueue.h"
+#include "net_connection.h"
 
-
-#endif /* net_client_h */
+namespace olc
+{
+  namespace net
+  {
+    template<typename T>
+    class client_interface
+    {
+      template <typename T>
+      class client_interface
+      {
+      private:
+        // This is the thread safe queue of incoming messages from server
+        tsqueue<owned_message<T>> m_qMessagesIn;
+      }
+    };
+  }
+}
