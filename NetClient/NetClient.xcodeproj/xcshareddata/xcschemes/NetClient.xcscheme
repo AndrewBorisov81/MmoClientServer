@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "77478A0125E39F870063413F"
-               BuildableName = "MmoClientServer"
-               BlueprintName = "MmoClientServer"
-               ReferencedContainer = "container:MmoClientServer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7789E49B25F8E6F300E36CF9"
+               BlueprintIdentifier = "7704E4542600FD300027C8F8"
                BuildableName = "NetClient"
                BlueprintName = "NetClient"
-               ReferencedContainer = "container:../Tests/NetClient/NetClient.xcodeproj">
+               ReferencedContainer = "container:NetClient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "77478A0125E39F870063413F"
-            BuildableName = "MmoClientServer"
-            BlueprintName = "MmoClientServer"
-            ReferencedContainer = "container:MmoClientServer.xcodeproj">
+            BlueprintIdentifier = "7704E4542600FD300027C8F8"
+            BuildableName = "NetClient"
+            BlueprintName = "NetClient"
+            ReferencedContainer = "container:NetClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "77478A0125E39F870063413F"
-            BuildableName = "MmoClientServer"
-            BlueprintName = "MmoClientServer"
-            ReferencedContainer = "container:MmoClientServer.xcodeproj">
+            BlueprintIdentifier = "7704E4542600FD300027C8F8"
+            BuildableName = "NetClient"
+            BlueprintName = "NetClient"
+            ReferencedContainer = "container:NetClient.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

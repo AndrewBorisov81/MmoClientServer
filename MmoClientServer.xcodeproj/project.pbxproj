@@ -7,8 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77478A0625E39F870063413F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77478A0525E39F870063413F /* main.cpp */; };
+		77478A0625E39F870063413F /* mmoClientServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77478A0525E39F870063413F /* mmoClientServer.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7704E4632600FD310027C8F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7704E45F2600FD300027C8F8 /* NetClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7704E4552600FD300027C8F8;
+			remoteInfo = NetClient;
+		};
+		7768C36026010586002A7838 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7704E45F2600FD300027C8F8 /* NetClient.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7704E4542600FD300027C8F8;
+			remoteInfo = NetClient;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		77478A0025E39F870063413F /* CopyFiles */ = {
@@ -23,10 +40,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7704E45F2600FD300027C8F8 /* NetClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NetClient.xcodeproj; path = NetClient/NetClient.xcodeproj; sourceTree = "<group>"; };
 		77478A0225E39F870063413F /* MmoClientServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MmoClientServer; sourceTree = BUILT_PRODUCTS_DIR; };
-		77478A0525E39F870063413F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		77478A0525E39F870063413F /* mmoClientServer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mmoClientServer.cpp; sourceTree = "<group>"; };
 		77478A0E25E3A1030063413F /* boost_asio_1_18_1 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = boost_asio_1_18_1; sourceTree = "<group>"; };
-		77EBDC5325F662C500902040 /* NetCommon */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NetCommon; sourceTree = "<group>"; };
+		7774327D25FFCAC80047564D /* net_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net_common.h; sourceTree = "<group>"; };
+		7774327E25FFCAD10047564D /* net_message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net_message.h; sourceTree = "<group>"; };
+		7774327F25FFCADD0047564D /* olc_net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olc_net.h; sourceTree = "<group>"; };
+		7774328025FFCAE30047564D /* libNetCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNetCommon.a; sourceTree = "<group>"; };
+		778E6F3A26038C1900ECDDCC /* net_tsqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net_tsqueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,13 +62,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7704E4602600FD300027C8F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7704E4642600FD310027C8F8 /* NetClient */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		774789F925E39F870063413F = {
 			isa = PBXGroup;
 			children = (
-				77EBDC5325F662C500902040 /* NetCommon */,
+				7704E45F2600FD300027C8F8 /* NetClient.xcodeproj */,
+				7774327C25FFCAA80047564D /* Frameworks */,
 				77478A0425E39F870063413F /* MmoClientServer */,
 				77478A0325E39F870063413F /* Products */,
-				776C83B225E7CAA500C4E0AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,17 +91,22 @@
 		77478A0425E39F870063413F /* MmoClientServer */ = {
 			isa = PBXGroup;
 			children = (
-				77478A0525E39F870063413F /* main.cpp */,
+				77478A0525E39F870063413F /* mmoClientServer.cpp */,
 				77478A0E25E3A1030063413F /* boost_asio_1_18_1 */,
 			);
 			path = MmoClientServer;
 			sourceTree = "<group>";
 		};
-		776C83B225E7CAA500C4E0AC /* Frameworks */ = {
+		7774327C25FFCAA80047564D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7774328025FFCAE30047564D /* libNetCommon.a */,
+				7774327F25FFCADD0047564D /* olc_net.h */,
+				7774327E25FFCAD10047564D /* net_message.h */,
+				7774327D25FFCAC80047564D /* net_common.h */,
+				778E6F3A26038C1900ECDDCC /* net_tsqueue.h */,
 			);
-			name = Frameworks;
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +123,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7768C36126010586002A7838 /* PBXTargetDependency */,
 			);
 			name = MmoClientServer;
 			productName = MmoClientServer;
@@ -118,6 +154,12 @@
 			mainGroup = 774789F925E39F870063413F;
 			productRefGroup = 77478A0325E39F870063413F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7704E4602600FD300027C8F8 /* Products */;
+					ProjectRef = 7704E45F2600FD300027C8F8 /* NetClient.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				77478A0125E39F870063413F /* MmoClientServer */,
@@ -125,16 +167,34 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		7704E4642600FD310027C8F8 /* NetClient */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = NetClient;
+			remoteRef = 7704E4632600FD310027C8F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		774789FE25E39F870063413F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77478A0625E39F870063413F /* main.cpp in Sources */,
+				77478A0625E39F870063413F /* mmoClientServer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7768C36126010586002A7838 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NetClient;
+			targetProxy = 7768C36026010586002A7838 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		77478A0725E39F870063413F /* Debug */ = {
@@ -264,6 +324,7 @@
 					/usr/local/Cellar/boost/1.75.0_1/include,
 					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/boost/",
 					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/",
+					"$(PROJECT_DIR)/Frameworks/",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.75.0_1/lib/;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -282,6 +343,7 @@
 					/usr/local/Cellar/boost/1.75.0_1/include,
 					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/boost/",
 					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/",
+					"$(PROJECT_DIR)/Frameworks/",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.75.0_1/lib/;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
