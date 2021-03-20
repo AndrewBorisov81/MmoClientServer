@@ -46,7 +46,7 @@ namespace olc
          friend message<T>& operator << (message<T>& msg, const DataType& data)
          {
              // Check that the type of the data being pushed is trivially copyable
-             static_assert(std::is_standart_layout<DataType>::value, "Data is too complex to be pushed into vector");
+             static_assert(std::is_standard_layout<DataType>::value, "Data is too complex to be pushed into vector");
              
              // Cache current size of vector, as this will be the point we insert the data
              size_t i = msg.body.size();
@@ -63,29 +63,47 @@ namespace olc
              // Return the target message so it can be "chained"
              return msg;
          }
+         
+         template<typename DataType>
+         friend message<T>& operator >> (message<T>& msg, DataType& data)
+         {
+             // Check that the type of the data being pushed is trivially copyable
+             static_assert(std::is_standard_layout<DataType>::value, "Data is too complex to be pushed into vector");
+             
+             // Chache the location towards the end of the vector where the pulled data starts
+             size_t i = msg.body.size() - sizeof(DataType);
+             
+             // Physically copy the data from the vector into the user varible
+             std::memcpy(&data, msg.body.data() + i, sizeof(DataType));
+             
+             // Shrink the vector to remove read bytes, and reset end position
+             msg.body.resize(i);
+             
+             // Recalculate the message size
+             msg.header.size = msg.size();
+             
+             // Return the target message so it can be "chained"
+             return msg;
+         }
      };
   
-     template<typename DataType>
-     friend message<T>& operator >> (message<T>& msg, DataType& data)
+     // Forward declare the connection
+     template <typename T>
+     class connection;
+  
+     template <typename T>
+     struct owned_message
      {
-         // Check that the type of the data being pushed is trivially copyable
-         static_assert(std::is_standart_layout<DataType>::value, "Data is too complex to be pushed into vector");
+         std::shared_ptr<connection<T>> remote = nullptr;
+         message<T> mgs;
          
-         // Chache the location towards the end of the vector where the pulled data starts
-         size_t i = msg.body.size() - sizeof(DataType);
-         
-         // Physically copy the data from the vector into the user varible
-         std::memcpy(&data, msg.body.data() + i, sizeof(DataType));
-         
-         // Shrink the vector to remove read bytes, and reset end position
-         msg.body.resize(i);
-         
-         // Recalculate the message size
-         msg.header.size = msg.size();
-         
-         // Return the target message so it can be "chained"
-         return msg;
-     }
+         // Again, a friendly string maker
+         friend std::ostream& operator<<(std::ostream& os, const owned_message<T>& msg)
+         {
+             os << msg.msg;
+             return os;
+         }
+     };
   }
 }
 

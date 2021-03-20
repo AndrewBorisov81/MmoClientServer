@@ -7,20 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77EBDC4825F6376D00902040 /* net_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 77EBDC4725F6376D00902040 /* net_common.h */; };
-		77EBDC4B25F6379100902040 /* net_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 77EBDC4A25F6379100902040 /* net_message.h */; };
-		77EBDC4F25F639A000902040 /* net_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77EBDC4D25F639A000902040 /* net_message.cpp */; };
+		7704E4592600FD300027C8F8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7704E4582600FD300027C8F8 /* main.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7704E4532600FD300027C8F8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		77EBDC3F25F636E400902040 /* libNetCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNetCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		77EBDC4725F6376D00902040 /* net_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net_common.h; sourceTree = "<group>"; };
-		77EBDC4A25F6379100902040 /* net_message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net_message.h; sourceTree = "<group>"; };
-		77EBDC4D25F639A000902040 /* net_message.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = net_message.cpp; sourceTree = "<group>"; };
+		7704E4552600FD300027C8F8 /* NetClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NetClient; sourceTree = BUILT_PRODUCTS_DIR; };
+		7704E4582600FD300027C8F8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		77EBDC3D25F636E400902040 /* Frameworks */ = {
+		7704E4522600FD300027C8F8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -30,70 +38,64 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		77EBDC3625F636E400902040 = {
+		7704E44C2600FD300027C8F8 = {
 			isa = PBXGroup;
 			children = (
-				77EBDC4D25F639A000902040 /* net_message.cpp */,
-				77EBDC4725F6376D00902040 /* net_common.h */,
-				77EBDC4A25F6379100902040 /* net_message.h */,
-				77EBDC4025F636E400902040 /* Products */,
+				7704E4572600FD300027C8F8 /* NetClient */,
+				7704E4562600FD300027C8F8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		77EBDC4025F636E400902040 /* Products */ = {
+		7704E4562600FD300027C8F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				77EBDC3F25F636E400902040 /* libNetCommon.a */,
+				7704E4552600FD300027C8F8 /* NetClient */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7704E4572600FD300027C8F8 /* NetClient */ = {
+			isa = PBXGroup;
+			children = (
+				7704E4582600FD300027C8F8 /* main.cpp */,
+			);
+			path = NetClient;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		77EBDC3B25F636E400902040 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				77EBDC4B25F6379100902040 /* net_message.h in Headers */,
-				77EBDC4825F6376D00902040 /* net_common.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		77EBDC3E25F636E400902040 /* NetCommon */ = {
+		7704E4542600FD300027C8F8 /* NetClient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77EBDC4325F636E400902040 /* Build configuration list for PBXNativeTarget "NetCommon" */;
+			buildConfigurationList = 7704E45C2600FD300027C8F8 /* Build configuration list for PBXNativeTarget "NetClient" */;
 			buildPhases = (
-				77EBDC3B25F636E400902040 /* Headers */,
-				77EBDC3C25F636E400902040 /* Sources */,
-				77EBDC3D25F636E400902040 /* Frameworks */,
+				7704E4512600FD300027C8F8 /* Sources */,
+				7704E4522600FD300027C8F8 /* Frameworks */,
+				7704E4532600FD300027C8F8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = NetCommon;
-			productName = NetCommon;
-			productReference = 77EBDC3F25F636E400902040 /* libNetCommon.a */;
-			productType = "com.apple.product-type.library.static";
+			name = NetClient;
+			productName = NetClient;
+			productReference = 7704E4552600FD300027C8F8 /* NetClient */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		77EBDC3725F636E400902040 /* Project object */ = {
+		7704E44D2600FD300027C8F8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
-					77EBDC3E25F636E400902040 = {
+					7704E4542600FD300027C8F8 = {
 						CreatedOnToolsVersion = 12.2;
 					};
 				};
 			};
-			buildConfigurationList = 77EBDC3A25F636E400902040 /* Build configuration list for PBXProject "NetCommon" */;
+			buildConfigurationList = 7704E4502600FD300027C8F8 /* Build configuration list for PBXProject "NetClient" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -101,29 +103,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 77EBDC3625F636E400902040;
-			productRefGroup = 77EBDC4025F636E400902040 /* Products */;
+			mainGroup = 7704E44C2600FD300027C8F8;
+			productRefGroup = 7704E4562600FD300027C8F8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				77EBDC3E25F636E400902040 /* NetCommon */,
+				7704E4542600FD300027C8F8 /* NetClient */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		77EBDC3C25F636E400902040 /* Sources */ = {
+		7704E4512600FD300027C8F8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77EBDC4F25F639A000902040 /* net_message.cpp in Sources */,
+				7704E4592600FD300027C8F8 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		77EBDC4125F636E400902040 /* Debug */ = {
+		7704E45A2600FD300027C8F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -182,7 +184,7 @@
 			};
 			name = Debug;
 		};
-		77EBDC4225F636E400902040 /* Release */ = {
+		7704E45B2600FD300027C8F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -234,50 +236,48 @@
 			};
 			name = Release;
 		};
-		77EBDC4425F636E400902040 /* Debug */ = {
+		7704E45D2600FD300027C8F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S474GYHJ3S;
-				EXECUTABLE_PREFIX = lib;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		77EBDC4525F636E400902040 /* Release */ = {
+		7704E45E2600FD300027C8F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S474GYHJ3S;
-				EXECUTABLE_PREFIX = lib;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		77EBDC3A25F636E400902040 /* Build configuration list for PBXProject "NetCommon" */ = {
+		7704E4502600FD300027C8F8 /* Build configuration list for PBXProject "NetClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				77EBDC4125F636E400902040 /* Debug */,
-				77EBDC4225F636E400902040 /* Release */,
+				7704E45A2600FD300027C8F8 /* Debug */,
+				7704E45B2600FD300027C8F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77EBDC4325F636E400902040 /* Build configuration list for PBXNativeTarget "NetCommon" */ = {
+		7704E45C2600FD300027C8F8 /* Build configuration list for PBXNativeTarget "NetClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				77EBDC4425F636E400902040 /* Debug */,
-				77EBDC4525F636E400902040 /* Release */,
+				7704E45D2600FD300027C8F8 /* Debug */,
+				7704E45E2600FD300027C8F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 77EBDC3725F636E400902040 /* Project object */;
+	rootObject = 7704E44D2600FD300027C8F8 /* Project object */;
 }
