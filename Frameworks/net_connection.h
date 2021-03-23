@@ -28,10 +28,10 @@ namespace olc
         
       protected:
         // Each connection has a unique socket to a remote
-        asio::ip::tcp::socket m_socket;
+        boost::asio::ip::tcp::socket m_socket;
         
         // This context is shared with the whole asio instance
-        asio::io_context& m_asioContext;
+        boost::asio::io_context& m_asioContext;
         
         // This queue holds all messages to be sent to the remote side
         // of this connection
@@ -40,7 +40,7 @@ namespace olc
         // This queue holds all messages that have been recieved from
         // the remote side of this connection. Note it is a reference
         // as the "owner" of this connection is expected to provide a queue
-        tsqueue<owned_message>& m_qMessagesIn;
+        tsqueue<owned_message<T>>& m_qMessagesIn;
     };
   }
 }
