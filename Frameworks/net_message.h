@@ -22,9 +22,13 @@ namespace olc
              uint32_t size = 0;
         };
      
+        // Message Body contains a header and a std::vector, containing raw bytes
+        // of infomation. This way the message can be varibale length, but the size
+        // in the header must be updated.
         template <typename T>
         struct message
         {
+            // Header & Body vector
             message_header<T> header{};
             std::vector<uint8_t> body;
          
@@ -40,6 +44,12 @@ namespace olc
                 os << "ID: " << int(msg.header.id) << " Size:" << msg.header.size;
                 return os;
             }
+            
+            // Convenience Operator overloads - These allow us to add and remove stuff from
+            // the body vector as if it were a stack, so First in, Last Out. These are a
+            // template in itself, because we dont know what data the user is pushing or
+            // popping, so lets allow them all. NOTE: It assumes the data type is fundamentally
+            // Plain Old Data (POD). TLDR: Serialise & Deserialise into/from a vector
          
             // Pushes any POD-like data into the message buffer
             template<typename DataType>
@@ -63,7 +73,8 @@ namespace olc
                 // Return the target message so it can be "chained"
                 return msg;
             }
-         
+            
+            // Pulls any POD-like data form the message buffer
             template<typename DataType>
             friend message<T>& operator >> (message<T>& msg, DataType& data)
             {
@@ -86,6 +97,10 @@ namespace olc
                 return msg;
             }
         };
+    
+        // An "owned" message is identical to a regular message, but it is associated with
+        // a connection. On a server, the owner would be the client that sent the message,
+        // on a client the owner would be the server.
   
         // Forward declare the connection
         template <typename T>
