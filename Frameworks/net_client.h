@@ -13,10 +13,8 @@ namespace olc
         class client_interface
         {
         public:
-            client_interface() : m_socket(m_context)
-            {
-                // Initialise the socket with io context, so it can do stuff
-            }
+            clinet_interface()
+            {}
         
             virtual ~client_interface()
             {
@@ -30,13 +28,13 @@ namespace olc
             {
                 try
                 {
-                    // Create connection
-                    m_connection = std::make_unique<connection<T>>(); // TODO
-                
                     // Resolve hostname/ip-address into tangiable physical address
                     boost::asio::ip::tcp::resolver resolver(m_context);
                     boost::asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, std::to_string(port));
-                  
+                    
+                    // Create connection
+                    m_connection = std::make_unique<connection<T>>(connect<T>::owner::client, m_context, asio::ip::tcp::socket(m_context), m_qMessagesIn);
+
                     // Tell the connection object to connect to server
                     m_connection->ConnectToServer(endpoints);
                   
@@ -57,7 +55,8 @@ namespace olc
                 // If connection exists, and it's connected then...
                 if(IsConnected())
                 {
-            
+                    // ...disconnect from server gracefully
+                    m_connection->Disconnect();
                 }
             
                 // Either way, we're alse done with the asio context...
@@ -99,8 +98,6 @@ namespace olc
             boost::asio::io_context m_context;
             // ...but needs a thread of its own to execute its work commands
             std::thread thrContext;
-            // This is the hardware socket that is connected to the server
-            boost::asio::ip::tcp::socket m_socket;
             // The client has a single instance of a "connection" object, which handles data transfer
             std::unique_ptr<connection<T>> m_connection;
           
