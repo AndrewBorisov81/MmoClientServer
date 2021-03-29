@@ -110,7 +110,7 @@ namespace olc
         struct owned_message
         {
             std::shared_ptr<connection<T>> remote = nullptr;
-            message<T> mgs;
+            message<T> msg;
          
             // Again, a friendly string maker
             friend std::ostream& operator<<(std::ostream& os, const owned_message<T>& msg)
