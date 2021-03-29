@@ -13,7 +13,7 @@ namespace olc
         class client_interface
         {
         public:
-            clinet_interface()
+            client_interface()
             {}
         
             virtual ~client_interface()
@@ -33,7 +33,7 @@ namespace olc
                     boost::asio::ip::tcp::resolver::results_type endpoints = resolver.resolve(host, std::to_string(port));
                     
                     // Create connection
-                    m_connection = std::make_unique<connection<T>>(connect<T>::owner::client, m_context, asio::ip::tcp::socket(m_context), m_qMessagesIn);
+                    m_connection = std::make_unique<connection<T>>(connection<T>::owner::client, m_context, boost::asio::ip::tcp::socket(m_context), m_qMessagesIn);
 
                     // Tell the connection object to connect to server
                     m_connection->ConnectToServer(endpoints);
