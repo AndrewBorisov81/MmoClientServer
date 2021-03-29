@@ -13,7 +13,7 @@ namespace olc
         {
         public:
             // A connection is "owned" by either a server or a client, and its
-            // beheviour is slightly different between th two
+            // beheviour is slightly different between the two.
             enum class owner
             {
                 server,
@@ -23,7 +23,7 @@ namespace olc
         public:
             // Constructor: Specify Owner, connect to context, transfer the socket
             //                             Provide reference to incomming message queue
-            connection(owner parent, asio::io_context& asioContext, asio::ip::tcp::socket socket, tsqueue<owned_message<T>>& qIn)
+            connection(owner parent, boost::asio::io_context& asioContext, boost::asio::ip::tcp::socket socket, tsqueue<owned_message<T>>& qIn)
                 : m_asioContext(asioContext), m_socket(std::move(socket)), m_qMessagesIn(qIn)
             {
                 m_nOwnerType = parent;
@@ -52,35 +52,35 @@ namespace olc
                 }
             }
             
-            void ConnectToServer(const asio::ip::tcp::resolver::results_type& endpoints)
+            void ConnectToServer(const boost::asio::ip::tcp::resolver::results_type& endpoints)
             {
-                // Onley client can connect to servers
+                // Only clients can connect to servers
                 if (m_nOwnerType == owner::client)
                 {
                     // Request asio attempts to connect to an endpoint
-                    asio::async_connect(m_socket, endpoints,
-                           [this](std::error_code ec, asio::ip::tcp::endpoint endpoint)
+                    boost::asio::async_connect(m_socket, endpoints,
+                           [this](std::error_code ec, boost::asio::ip::tcp::endpoint endpoint)
                            {
                                 if(!ec)
                                 {
                                     ReadHeader();
                                 }
-                           }
-                    });
+                           });
                 }
             }
             
             void Disconnect()
             {
                  if (IsConnected())
-                     asio::post(m_asioContext, [this](){ m_socket.close(); });
+                     boost::asio::post(m_asioContext, [this](){ m_socket.close(); });
             }
     
             bool IsConnected() const
             {
                 return m_socket.is_open();
             }
-    
+            
+            // Prime the connection to wait for incoming messages
             void StartListening()
             {
                 
@@ -91,7 +91,7 @@ namespace olc
             // the target, for a client, the target is the server and vice versa
             void Send(const message<T>& msg)
             {
-                asio::post(m_asioContext,
+                boost::asio::post(m_asioContext,
                         [this, msg]()
                         {
                              // if the queue has a message in it, then we must
@@ -99,6 +99,7 @@ namespace olc
                              // Either way add the message to the queue to be output. If no messages
                              // were available to be written, then start the process of writing the
                              // message at the front of the queue.
+                             bool bWritingMessage = !m_qMessagesOut.empty();
                              if (!bWritingMessage)
                              {
                                  WriteHeader();
@@ -113,7 +114,7 @@ namespace olc
                 // If this function is called, we know the outgoing message queue must have
                 // at least one message to send. So allocate a transmission buffer to hold
                 // the message, and issue the work - asio, send these bytes
-                asio::async_write(m_socket, asio::buffer(&m_qMessagesOut.front().header, sizeof(message_header<T>)),
+                boost::asio::async_write(m_socket, boost::asio::buffer(&m_qMessagesOut.front().header, sizeof(message_header<T>)),
                     [this](std::error_code ec, std::size_t length)
                     {
                         // asio has no sent the bytes - if there was a problem
@@ -159,7 +160,7 @@ namespace olc
             // If this function is called, a header has just been sent, and that header
             // indicated a body existed for this message. Fill a transmission byffer
             // with the body data, and send it!
-            asio::async_write(m_socket, asio::buffer(m_qMessagesOut.front().body.data(), m_qMessagesOut.front().body.size()),
+            boost::asio::async_write(m_socket, boost::asio::buffer(m_qMessagesOut.front().body.data(), m_qMessagesOut.front().body.size()),
                 [this](std::error_code ec, std::size_t length)
                 {
                     if(!ec)
@@ -178,10 +179,9 @@ namespace olc
                     else
                     {
                         // Sending failed, see WriteHeader() equivalent for description :P
-                        std::cout << "[" << id << "] Write Body Fail.\n;
+                        std::cout << "[" << id << "] Write Body Fail.\n";
                         m_socket.close();
                     }
-                
                 });
         }
     
@@ -193,7 +193,7 @@ namespace olc
             // size, so allocate a transmission buffer large enogh to store it. In fact,
             // we will construct the message in a "temporary" message object as it's
             // convenient to work with.
-            asio::async_read(m_socket, asio::buffer(&m_msgTemporaryIn.header, sizeof(message_header<T>))
+            boost::asio::async_read(m_socket, boost::asio::buffer(&m_msgTemporaryIn.header, sizeof(message_header<T>)),
                 [this](std::error_code ec, std::size_t length)
                 {
                     if (!ec)
@@ -219,6 +219,7 @@ namespace olc
                         // Reading form the client went wront, most likely a disconnect
                         // has occured. Close the socket and let the system tidy it up later.
                         std::cout << "[" << id << "] Read Header Fail.\n";
+                        m_socket.close();
                     }
                 });
         }
@@ -229,7 +230,7 @@ namespace olc
             // If this function is called, a header has already been read, and that header
             // request we read a body, The space for that body has already been allocated
             // in the temporary message object, so just wait for the bytes to arrive...
-            asio::async_read(m_socket, asio::buffer(m_msgTemporaryIn.body.data(), m_msgTemporaryIn.body.size()),
+            boost::asio::async_read(m_socket, boost::asio::buffer(m_msgTemporaryIn.body.data(), m_msgTemporaryIn.body.size()),
                 [this](std::error_code ec, std::size_t length)
                 {
                     if(!ec)
@@ -255,7 +256,7 @@ namespace olc
             if(m_nOwnerType == owner::server)
                 m_qMessagesIn.push_back({this->shared_from_this(), m_msgTemporaryIn });
             else
-                m_qMessagesIn.puhs_back({ nullptr, m_msgTemporaryIn });
+                m_qMessagesIn.push_back({ nullptr, m_msgTemporaryIn });
             
             // We must now prime the asio context to receive the next message. It
             // will just sit and wait for bytes to arrive, and the message construction
