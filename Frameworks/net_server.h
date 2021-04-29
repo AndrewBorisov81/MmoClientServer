@@ -47,7 +47,7 @@ namespace olc
                     WaitForClientConnection();
                     
                     // Launch the asio context in its own thread
-                    m_threadContext = std::thread([this](){m_asioContext.run(); });
+                    m_threadContext = std::thread([this](){ m_asioContext.run(); });
                 }
                 catch (std::exception& e)
                 {
@@ -245,3 +245,4 @@ namespace olc
         };
     }
 }
+
