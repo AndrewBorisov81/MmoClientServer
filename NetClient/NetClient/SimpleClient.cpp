@@ -6,7 +6,7 @@
 //
 
 #include <iostream>
-#include <olc_net.h>
+#include "olc_net.h"
 
 enum class CustomMsgTypes : uint32_t
 {
@@ -42,7 +42,7 @@ class CustomClient : public olc::net::client_interface<CustomMsgTypes>
 
 int main(int argc, const char * argv[]) {
     CustomClient c;
-    c.Connect("127.0.0.1", 600000);
+    c.Connect("127.0.0.1", 60000);
     
     
     bool bQuit = false;
@@ -81,6 +81,10 @@ int main(int argc, const char * argv[]) {
                     std::cout << "Hello from [" << clientID << "]\n";
                 }
                 break;
+                        
+                case CustomMsgTypes::ServerDeny:
+                case CustomMsgTypes::MessageAll:
+                break;
                 }
             }
         }
@@ -93,3 +97,4 @@ int main(int argc, const char * argv[]) {
     
     return 0;
 }
+
