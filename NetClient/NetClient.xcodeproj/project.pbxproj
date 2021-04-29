@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7704E4592600FD300027C8F8 /* NetClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7704E4582600FD300027C8F8 /* NetClient.cpp */; };
+		7704E4592600FD300027C8F8 /* SimpleClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7704E4582600FD300027C8F8 /* SimpleClient.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,8 +24,7 @@
 
 /* Begin PBXFileReference section */
 		7704E4552600FD300027C8F8 /* NetClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NetClient; sourceTree = BUILT_PRODUCTS_DIR; };
-		7704E4582600FD300027C8F8 /* NetClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetClient.cpp; sourceTree = "<group>"; };
-		7768C3662601072A002A7838 /* libNetCommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libNetCommon.a; path = ../Frameworks/libNetCommon.a; sourceTree = "<group>"; };
+		7704E4582600FD300027C8F8 /* SimpleClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleClient.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +43,6 @@
 			children = (
 				7704E4572600FD300027C8F8 /* NetClient */,
 				7704E4562600FD300027C8F8 /* Products */,
-				7768C3652601072A002A7838 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,17 +57,9 @@
 		7704E4572600FD300027C8F8 /* NetClient */ = {
 			isa = PBXGroup;
 			children = (
-				7704E4582600FD300027C8F8 /* NetClient.cpp */,
+				7704E4582600FD300027C8F8 /* SimpleClient.cpp */,
 			);
 			path = NetClient;
-			sourceTree = "<group>";
-		};
-		7768C3652601072A002A7838 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7768C3662601072A002A7838 /* libNetCommon.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,7 +118,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7704E4592600FD300027C8F8 /* NetClient.cpp in Sources */,
+				7704E4592600FD300027C8F8 /* SimpleClient.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +239,12 @@
 		7704E45D2600FD300027C8F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S474GYHJ3S;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/boost/1.75.0_1/include,
 					/Users/andrewborisov/Desktop/Dev/Projects/Cpp/MmoClientServer/MmoClientServer/boost_asio_1_18_1/boost/,
@@ -259,16 +252,27 @@
 					/Users/andrewborisov/Desktop/Dev/Projects/Cpp/MmoClientServer/Frameworks/,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.75.0_1/lib/;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.75.0_1/include,
+					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/boost/",
+					"$(PROJECT_DIR)/MmoClientServer/MmoClientServer/boost_asio_1_18_1/",
+					"$(PROJECT_DIR)/MmoClientServer/Frameworks/",
+				);
 			};
 			name = Debug;
 		};
 		7704E45E2600FD300027C8F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S474GYHJ3S;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/Cellar/boost/1.75.0_1/include,
 					/Users/andrewborisov/Desktop/Dev/Projects/Cpp/MmoClientServer/MmoClientServer/boost_asio_1_18_1/boost/,
@@ -276,7 +280,15 @@
 					/Users/andrewborisov/Desktop/Dev/Projects/Cpp/MmoClientServer/Frameworks/,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.75.0_1/lib/;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/boost/1.75.0_1/include,
+					"$(PROJECT_DIR)/MmoClientServer/boost_asio_1_18_1/boost/",
+					"$(PROJECT_DIR)/MmoClientServer/MmoClientServer/boost_asio_1_18_1/",
+					"$(PROJECT_DIR)/MmoClientServer/Frameworks/",
+				);
 			};
 			name = Release;
 		};
