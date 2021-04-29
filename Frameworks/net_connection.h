@@ -100,6 +100,7 @@ namespace olc
                              // were available to be written, then start the process of writing the
                              // message at the front of the queue.
                              bool bWritingMessage = !m_qMessagesOut.empty();
+                             m_qMessagesOut.push_back(msg);
                              if (!bWritingMessage)
                              {
                                  WriteHeader();
@@ -291,3 +292,4 @@ namespace olc
         };
     }
 }
+
