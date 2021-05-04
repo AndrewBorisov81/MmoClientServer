@@ -30,6 +30,7 @@ protected:
         olc::net::message<CustomMsgTypes> msg;
         msg.header.id = CustomMsgTypes::ServerAccept;
         client->Send(msg);
+        
         return true;
     }
     
