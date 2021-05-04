@@ -8,6 +8,8 @@
 #include <iostream>
 #include "olc_net.h"
 
+
+
 enum class CustomMsgTypes : uint32_t
 {
     ServerAccept,
@@ -30,13 +32,14 @@ class CustomClient : public olc::net::client_interface<CustomMsgTypes>
         
             msg << timeNow;
             //olc::net::client_interface.Send(msg);
-            //Send(msg);
+            Send(msg);
         }
     
         void MessageAll()
         {
             olc::net::message<CustomMsgTypes> msg;
             msg.header.id = CustomMsgTypes::MessageAll;
+            Send(msg);
         }
 };
 
@@ -44,6 +47,8 @@ int main(int argc, const char * argv[]) {
     CustomClient c;
     c.Connect("127.0.0.1", 60000);
     
+    bool key[3] = { false, false, false };
+    bool old_key[3] = {false, false, false };
     
     bool bQuit = false;
     while(!bQuit)
