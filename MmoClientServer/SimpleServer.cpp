@@ -65,6 +65,9 @@ protected:
             MessageAllClients(msg, client);
         }
         break;
+                
+        default:
+        break;
         }
     }
 };
